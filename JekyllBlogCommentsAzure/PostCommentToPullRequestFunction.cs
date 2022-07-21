@@ -71,7 +71,7 @@ namespace JekyllBlogCommentsAzure
             {
                 Committer = new Committer(comment.name, comment.email ?? ConfigurationManager.AppSettings["CommentFallbackCommitEmail"] ?? "redacted@example.com", comment.date)
             };
-            await github.Repository.Content.CreateFile(repo.Id, $"_data/comments/{comment.post_id}/{comment.id}.yml", fileRequest);
+            await github.Repository.Content.CreateFile(repo.Id, $"website/_data/comments/{comment.post_id}/{comment.id}.yml", fileRequest);
 
             // Create a pull request for the new branch and file
             return await github.Repository.PullRequest.Create(repo.Id, new NewPullRequest(fileRequest.Message, newBranch.Ref, defaultBranch.Name)
